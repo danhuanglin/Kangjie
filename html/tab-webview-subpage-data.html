@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/calendar.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/ajax_00.js" type="text/javascript" charset="utf-8"></script>
+
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<style type="text/css">
+			body {
+				font-size: 16px;
+			}
+			
+			table {
+				margin: 0 auto;
+				border-collapse: collapse;
+				width: 100%;
+			}
+			
+			th,
+			td {
+				padding: 0;
+				text-align: left;
+				height: 30px;
+			}
+			
+			tr {
+				border: 1px solid black;
+			}
+		</style>
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				$.ready(function() {
+					get_grouphosts();
+					var dataGroupid = document.getElementById("data_groupid");
+					var dataHostid = document.getElementById("data_hostid");
+					var dataTriggerState = document.getElementById("trigger_state");
+					var dataTriggerAck = document.getElementById("trigger_ack");
+					var dataPriority = document.getElementById("priority");
+					var dataSubmitBtn = document.getElementById("data_submit");
+
+					dataSubmitBtn.addEventListener("tap", function() {
+						var group = dataGroupid.options[dataGroupid.selectedIndex].text;
+						var host = dataHostid.options[dataHostid.selectedIndex].text;
+						var state = dataTriggerState.options[dataTriggerState.selectedIndex].value;
+						var ack = dataTriggerAck.options[dataTriggerAck.selectedIndex].value;
+						var priority = dataPriority.options[dataPriority.selectedIndex].value;
+						get_trigger_state(group, host, state, ack, priority);
+					});
+
+				});
+			})(mui, document);
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div id="header">
+					<label>群组</label>
+					<select id="data_groupid" name="data_groupid" style="width: 38%">
+
+					</select>
+					<label>主机</label>
+					<select id="data_hostid" name="data_hostid" style="width: 38%">
+						<!--<option>所有</option>-->
+					</select>
+				</div>
+				<div id="property">
+					<form action="" method="post">
+						<span>触发器状态</span>
+						<select id="trigger_state" style="width: 80%;">
+							<option value="2">任何</option>
+							<option value="1">最近问题</option>
+							<option value="3">问题</option>
+						</select>
+						<br />
+						<span>确认状态</span>
+						<select id="trigger_ack">
+							<option value="1">任何</option>
+							<option value="2">有未确认的事件</option>
+							<option value="3">有最新未确认的事件</option>
+						</select>
+						<br />
+						<span>触发器严重级别:</span>
+						<select id="priority">
+							<option value="">未分类</option>
+							<option value="1">信息</option>
+							<option value="2">警告</option>
+							<option value="3">一般严重</option>
+							<option value="4">严重</option>
+							<option value="5">灾难</option>
+						</select>
+						<br />
+						<br />
+						<!--<button id="data_submit" class="mui-btn mui-btn-blue" style="width: 48%;">查询</button>-->
+						<input id="data_submit" type="button" style="width: 48%;background-color: #155CEC;color: #fff;" value="查询" />
+						<input id="data_reset" type="reset" style="width: 48%; " value="重置 " />
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<table id="trigger_tab_id">
+
+			<thead id="trigger_thead">
+				<tr>
+					<th>触发器</th>
+					<th colspan="2">主机</th>
+				</tr>
+
+			</thead>
+			<tbody id="trigger_table">
+			</tbody>
+
+		</table>
+
+	</body>
+
+</html>

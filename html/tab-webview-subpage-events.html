@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>触发器事件</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script language="javascript" type="text/javascript" src="../js/WdatePicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<style type="text/css">
+			body {
+				font-size: 16px;
+			}
+			
+			table {
+				margin: 0 auto;
+				border-collapse: collapse;
+				width: 100%;
+			}
+			
+			th,
+			td {
+				padding: 0;
+				text-align: left;
+				height: 30px;
+			}
+			
+			tr {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div>
+					<label>群组</label>
+					<select id="event_groupid" name="event_groupid" style="width: 38%">
+						<!--<option value="" selected="selected">所有</option>-->
+					</select>
+
+					<label>主机</label>
+					<select id="event_hostid" name="event_hostid" style="width: 38%">
+						<!--<option value="" selected="selected">所有</option>-->
+					</select>
+
+					<label>触发器</label>
+					<select id="triggerid" name="triggerid" style="width: 82%">
+						<!--<option value="" selected="selected">所有</option>-->
+					</select>
+				</div>
+				<div id="">
+					<label style="float:left">开始时间&nbsp;&nbsp;</label>
+					<input readonly="readonly" type="text" class="Wdate" id="events_start_time" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" style="width: 76%" />
+
+					<label style="float:left">结束时间&nbsp;&nbsp;</label>
+					<input readonly="readonly" type="text" class="Wdate" id="events_end_time" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" style="width: 76%" />
+				</div>
+
+				<button id="event_submit" class="mui-btn mui-btn-blue" style="width: 48%;">查询</button>
+				<!--<button id="reset" style="width: 48%;">重置</button>-->
+				<input type="reset" style="width: 48%;" value="重置" />
+			</div>
+
+			<table id="events_tab_id" class="mui-table-view" style="font-size: 14px;">
+				<thead id="event-thead">
+					<tr>
+						<th>时间</th>
+						<th>描述</th>
+						<th>状态</th>
+						<th>严重性</th>
+						<th>确认</th>
+					</tr>
+
+				</thead>
+				<tbody id="event-table">
+				</tbody>
+
+			</table>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/calendar.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="../js/ajax.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="../js/ajax_00.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			(function($) {
+				$.init();
+				$.ready(function() {
+					get_grouphosts();
+					get_all_event();
+
+					// 实现二级联动：当点击群组select框时，获取对应群组的主机名字
+					var oGroupid = document.getElementById("event_groupid");
+					var oHostid = document.getElementById("event_hostid");
+					var oTriggerid = document.getElementById("triggerid");
+					var oSubmitBtn = document.getElementById("event_submit");
+
+					oSubmitBtn.addEventListener("tap", function() {
+						var selectedGroupid = oGroupid.options[oGroupid.selectedIndex].value;
+						var selectedHostid = oHostid.options[oGroupid.selectedIndex].value;
+						var selectedTriggerid = oTriggerid.options[oTriggerid.selectedIndex].value;
+						var hostname = oHostid.options[oHostid.selectedIndex].innerHTML;
+						get_trigger_event(hostname, selectedHostid, selectedGroupid, selectedTriggerid);
+					});
+
+				});
+			})(mui, document);
+		</script>
+	</body>
+
+</html>

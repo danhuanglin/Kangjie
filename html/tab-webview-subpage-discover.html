@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>自动发现</title>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/ajax_00.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<style type="text/css">
+			body {
+				font-size: 16px;
+			}
+			
+			table {
+				margin: 0 auto;
+				border-collapse: collapse;
+				width: 100%;
+			}
+			
+			th,
+			td {
+				padding: 0;
+				text-align: left;
+				height: 30px;
+			}
+			
+			tr {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<label>自动发现</label>
+		<select id="select_real_ruler" name="select_real_ruler" style="width: 80%;margin-top: 10px;margin-bottom: 10px;">
+			<!--<option value="0" selected="selected">所有</option>-->
+		</select>
+		<table id="discover_tab_id" style="font-size: 14px;" class="mui-table-view">
+			<thead id="discover_thead">
+				<tr>
+					<th>已发现的设备</th>
+					<th>已监测的主机</th>
+					<th>在线时间/断线时间</th>
+					<th>FTP</th>
+				</tr>
+			</thead>
+			<tbody id="discover_table">
+			</tbody>
+		</table>
+	</body>
+	<script type="text/javascript">
+		(function($) {
+			$.init();
+			$.ready(function() {
+				get_ruler();
+				get_dhost();
+			});
+		})(mui, document);
+	</script>
+
+</html>

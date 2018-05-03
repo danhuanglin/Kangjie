@@ -1,0 +1,36 @@
+{
+  "index.html": {
+    "refer": [
+      "html/main.html",
+      "html/tab-webview-main.html"
+    ]
+  },
+  "html/main.html": {
+    "refer": [
+      "index.html"
+    ]
+  },
+  "html/tab-webview-main.html": {
+    "resources": [
+      "html/tab-webview-subpage-about.html",
+      "html/tab-webview-subpage-data.html",
+      "html/tab-webview-subpage-graph.html"
+    ],
+    "refer": [
+      "html/tab-webview-subpage-setting.html",
+      "html/tab-webview-subpage-chat.html",
+      "html/tab-webview-subpage-contact.html",
+      "html/tab-webview-subpage-about.html",
+      "html/tab-webview-subpage-events.html",
+      "html/tab-webview-subpage-data.html",
+      "html/tab-webview-subpage-graph.html",
+      "html/tab-webview-subpage-discover.html",
+      "index.html"
+    ]
+  },
+  "html/tab-webview-subpage-events.html": {
+    "resources": [
+      "js/mui.picker.min.js"
+    ]
+  }
+}

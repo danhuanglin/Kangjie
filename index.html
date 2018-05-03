@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/ajax_00.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style>
+			body{
+				background-color: #007AFF;
+			}
+			.mui-input-row{
+				height: 30px;
+			}
+			img {
+				margin: 50px auto;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<center><img src="img/kangjie.png" /></center>
+			<form id='login-form' class="mui-input-group" style=" border-radius:20px;margin: auto 10px;border-style: none;">
+				<div class="mui-input-row">
+					<label>用户</label>
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入用户">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+			</form>
+			
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary" onclick="user_login()">登录</button>
+			</div>
+		</div>
+		
+	</body>
+
+</html>
